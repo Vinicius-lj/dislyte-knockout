@@ -1,0 +1,16 @@
+{% if most_used_esper %}
+<table>
+    {% for esper in most_used_esper %}
+    <tr>
+        <td>{{ esper.name }}</td>
+        <td>{{ esper.rarity }}</td>
+        <td>{{ esper.classe }}</td>
+        <td>{{ esper.role }}</td>
+        <td>{{ esper.leader_effect }}</td>
+        <td>{{ esper.count }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No information are available.</p>
+{% endif %}
