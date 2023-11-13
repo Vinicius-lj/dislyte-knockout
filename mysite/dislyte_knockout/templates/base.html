@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Site</title>
+    <script src="{% static 'chart.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <!-- Seu cabeçalho comum aqui -->
+        <h1>My Site</h1>
+        <nav>
+            <!-- Menu de navegação, se aplicável -->
+        </nav>
+    </header>
+    <main>
+
+        {% block content %}{% endblock %}
+
+    </main>
+
+    <footer>
+        <!-- <div style="width:400px;">
+            <canvas id="myChart"></canvas>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+        <script>
+            const ctx = document.getElementById('myChart');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [19, 19, 3, 5, 2, 19],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script> -->
+
+        <!-- Seu rodapé comum aqui -->
+        <p>&copy; 2023 My Site. Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+
+</html>
