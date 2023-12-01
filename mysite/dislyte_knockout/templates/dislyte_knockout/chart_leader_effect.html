@@ -1,0 +1,100 @@
+{% if most_used_leader_effect %}
+{{ most_used_leader_effect|json_script:"most_used_leader_effect" }}
+<script>
+    var ctx = document.getElementById('leaderEffectChart').getContext('2d');
+    var most_used_leader_effect = JSON.parse(document.getElementById('most_used_leader_effect').textContent);
+
+    const leader_effect_colors = {
+        'HP': 'rgb(255,139,0)',
+        'SPD': 'rgb(219,121,255)',
+        'ACC': 'rgb(153,255,253)',
+        'ATK': 'rgb(153,255,253)',
+        'C.RATE': 'rgb(153,255,253)',
+        'RESIST': 'rgb(153,255,253)',
+        'DEF': 'rgb(153,255,253)',
+        'None': 'rgb(153,255,253)',
+    };
+
+    var myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: most_used_leader_effect.map(item => item.esper_id__leader_effect),
+            datasets: [{
+                data: most_used_leader_effect.map(item => item.count),
+                backgroundColor: most_used_leader_effect.map(item => leader_effect_colors[item.esper_id__leader_effect]),
+                borderWidth: 0,
+                hoverOffset: 10
+            }],
+        },
+        plugins: [ChartDataLabels],
+        options: {
+            plugins: {
+                datalabels: {
+                    color: '#fff',
+                    font: {
+                        weight: 'bold',
+                        size: 20
+                    },
+                    formatter: (value, context) => {
+                        var dataset = context.chart.data.datasets[0];
+                        var total = dataset.data.reduce((acc, data) => acc + data, 0);
+                        var percentage = ((value / total) * 100).toFixed(1) + '%';
+                        return percentage;
+                    }
+                }
+            }
+        }
+    });
+
+    var ctx2 = document.getElementById('barChart').getContext('2d');
+
+    const data = {
+        labels: most_used_leader_effect.map(item => item.esper_id__leader_effect),
+        datasets: [{
+            label: '',
+            data: most_used_leader_effect.map(item => item.count),
+            backgroundColor: most_used_leader_effect.map(item => leader_effect_colors[item.esper_id__leader_effect]),
+            borderWidth: 0,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 205, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(201, 203, 207, 0.2)'
+            ],
+        }]
+    };
+    var myChart2 = new Chart(ctx2, {
+        type: 'bar',
+        data: data,
+        plugins: [ChartDataLabels],
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+                datalabels: {
+                    color: '#fff',
+                    font: {
+                        weight: 'bold',
+                        size: 20
+                    },
+                    formatter: (value, context) => {
+                        var dataset = context.chart.data.datasets[0];
+                        var total = dataset.data.reduce((acc, data) => acc + data, 0);
+                        var percentage = ((value / total) * 100).toFixed(1) + '%';
+                        return percentage;
+                    }
+                }
+            }
+        },
+    });
+
+</script>
+{% else %}
+<p>No information are available.</p>
+{% endif %}

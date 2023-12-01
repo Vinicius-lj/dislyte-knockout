@@ -1,0 +1,48 @@
+{% if most_used_role %}
+{{ most_used_role|json_script:"most_used_role" }}
+<script>
+    var ctx = document.getElementById('roleChart').getContext('2d');
+    var most_used_role = JSON.parse(document.getElementById('most_used_role').textContent);
+
+    var role_colors = {
+        'Support': '#FFDB00',
+        'Fighter': '#FF1E00',
+        'Defender': '#0079FF',
+        'Controller': '#00BF32'
+    };
+
+    var myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: most_used_role.map(item => item.esper_id__role),
+            datasets: [{
+                data: most_used_role.map(item => item.count),
+                backgroundColor: most_used_role.map(item => role_colors[item.esper_id__role]),
+                borderWidth: 0,
+                hoverOffset: 10
+            }],
+        },
+        plugins: [ChartDataLabels],
+        options: {
+            plugins: {
+                datalabels: {
+                    color: '#fff',
+                    font: {
+                        weight: 'bold',
+                        size: 20
+                    },
+                    formatter: (value, context) => {
+                        var dataset = context.chart.data.datasets[0];
+                        var total = dataset.data.reduce((acc, data) => acc + data, 0);
+                        var percentage = ((value / total) * 100).toFixed(1) + '%';
+                        return percentage;
+                    }
+                }
+            }
+        }
+    });
+
+</script>
+{% else %}
+<p>No information are available.</p>
+{% endif %}

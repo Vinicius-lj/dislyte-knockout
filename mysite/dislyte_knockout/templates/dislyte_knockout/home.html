@@ -1,12 +1,36 @@
 {% extends "base.html" %}
 
-{% block content %}
-<h1>Most Used Esper</h1>
+{% block body %}
+<h1>Class</h1>
+<div style="width: 400px;">
+    <canvas id="classChart"></canvas>
+</div>
+
+<h1>Role</h1>
+<div style="width: 400px;">
+    <canvas id="roleChart"></canvas>
+</div>
+
+<h1>Rarity</h1>
+<div style="width: 400px;">
+    <canvas id="rarityChart"></canvas>
+</div>
+
+<h1>Leader Effect</h1>
+<div style="width: 400px;">
+    <canvas id="leaderEffectChart"></canvas>
+</div>
+
+<h1>Bar Chart</h1>
+<div style="width: 400px;">
+    <canvas id="barChart"></canvas>
+</div>
+
+<h1>Most Used Espers</h1>
 {% include 'dislyte_knockout/most_used_esper.html' %}
 
-<h1>Most Used Class</h1>
-{% include 'dislyte_knockout/most_used_class.html' %}
-
-<h1>Chart Test</h1>
-{% include 'dislyte_knockout/chart_test.html' %}
+{% include 'dislyte_knockout/chart_role.html' %}
+{% include 'dislyte_knockout/chart_class.html' %}
+{% include 'dislyte_knockout/chart_rarity.html' %}
+{% include 'dislyte_knockout/chart_leader_effect.html' %}
 {% endblock %}
