@@ -1,36 +1,68 @@
 {% extends "base.html" %}
 
-{% block body %}
-<h1>Class</h1>
-<div style="width: 400px;">
-    <canvas id="classChart"></canvas>
+{% block home %}
+
+
+<div id="container10" class="container columns full screen">
+    <div class="wrapper">
+        <div class="inner">
+            <div>
+                <h1 class="style3">Class</h1>
+                <hr class="style1">
+                <div class="doughnut">
+                    <canvas id="classChart"></canvas>
+                </div>
+            </div>
+            <div>
+                <h1 class="style3">Role</h1>
+                <hr class="style1">
+                <div class="doughnut">
+                    <canvas id="roleChart"></canvas>
+                </div>
+            </div>
+            <div>
+                <h1 class="style3">Rarity</h1>
+                <hr class="style1">
+                <div class="doughnut">
+                    <canvas id="rarityChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="container05" class="container columns full screen">
+    <div class="wrapper">
+        <div class="inner">
+            <div>
+                <h1 class="style3">Leader Effect</h1>
+                <hr class="style1">
+                <div class="doughnut">
+                    <canvas id="leaderEffectChart"></canvas>
+                </div>
+            </div>
+            <div>
+                <h1 class="style3">Ressonance</h1>
+                <hr class="style1">
+                <div class="barRessonance">
+                    <canvas id="ressonanceChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <h1 class="style3">Most Used Espers</h1>
+    <hr class="style1">
+    <div>
+        <canvas id="esperChart"></canvas>
+    </div>
 </div>
 
-<h1>Role</h1>
-<div style="width: 400px;">
-    <canvas id="roleChart"></canvas>
-</div>
-
-<h1>Rarity</h1>
-<div style="width: 400px;">
-    <canvas id="rarityChart"></canvas>
-</div>
-
-<h1>Leader Effect</h1>
-<div style="width: 400px;">
-    <canvas id="leaderEffectChart"></canvas>
-</div>
-
-<h1>Bar Chart</h1>
-<div style="width: 400px;">
-    <canvas id="barChart"></canvas>
-</div>
-
-<h1>Most Used Espers</h1>
-{% include 'dislyte_knockout/most_used_esper.html' %}
-
+{% include 'dislyte_knockout/chart_esper.html' %}
 {% include 'dislyte_knockout/chart_role.html' %}
 {% include 'dislyte_knockout/chart_class.html' %}
 {% include 'dislyte_knockout/chart_rarity.html' %}
 {% include 'dislyte_knockout/chart_leader_effect.html' %}
+{% include 'dislyte_knockout/chart_ressonance.html' %}
+
 {% endblock %}

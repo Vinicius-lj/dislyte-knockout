@@ -4,24 +4,26 @@
     var ctx = document.getElementById('roleChart').getContext('2d');
     var most_used_role = JSON.parse(document.getElementById('most_used_role').textContent);
 
-    var role_colors = {
-        'Support': '#FFDB00',
-        'Fighter': '#FF1E00',
-        'Defender': '#0079FF',
-        'Controller': '#00BF32'
+    const role_colors = {
+        'Support': '#E15FED',
+        'Fighter': '#9254C8',
+        'Defender': '#332FD0',
+        'Controller': '#6EDCD9'
+    };
+
+    const data_role = {
+        labels: most_used_role.map(item => item.esper_id__role),
+        datasets: [{
+            data: most_used_role.map(item => item.count),
+            backgroundColor: most_used_role.map(item => role_colors[item.esper_id__role]),
+            borderWidth: 0,
+            hoverOffset: 10
+        }],
     };
 
     var myChart = new Chart(ctx, {
         type: 'doughnut',
-        data: {
-            labels: most_used_role.map(item => item.esper_id__role),
-            datasets: [{
-                data: most_used_role.map(item => item.count),
-                backgroundColor: most_used_role.map(item => role_colors[item.esper_id__role]),
-                borderWidth: 0,
-                hoverOffset: 10
-            }],
-        },
+        data: data_role,
         plugins: [ChartDataLabels],
         options: {
             plugins: {

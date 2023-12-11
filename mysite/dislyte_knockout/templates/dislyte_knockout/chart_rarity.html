@@ -4,23 +4,25 @@
     var ctx = document.getElementById('rarityChart').getContext('2d');
     var most_used_rarity = JSON.parse(document.getElementById('most_used_rarity').textContent);
 
-    var rarity_colors = {
+    const rarity_colors = {
         'Legendary': 'rgb(255,139,0)',
         'Epic': 'rgb(219,121,255)',
         'Rare': 'rgb(153,255,253)',
     };
 
+    const data_rarity = {
+        labels: most_used_rarity.map(item => item.esper_id__rarity),
+        datasets: [{
+            data: most_used_rarity.map(item => item.count),
+            backgroundColor: most_used_rarity.map(item => rarity_colors[item.esper_id__rarity]),
+            borderWidth: 0,
+            hoverOffset: 10
+        }],
+    };
+
     var myChart = new Chart(ctx, {
         type: 'doughnut',
-        data: {
-            labels: most_used_rarity.map(item => item.esper_id__rarity),
-            datasets: [{
-                data: most_used_rarity.map(item => item.count),
-                backgroundColor: most_used_rarity.map(item => rarity_colors[item.esper_id__rarity]),
-                borderWidth: 0,
-                hoverOffset: 10
-            }],
-        },
+        data: data_rarity,
         plugins: [ChartDataLabels],
         options: {
             plugins: {

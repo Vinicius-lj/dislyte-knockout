@@ -3,34 +3,62 @@
 <html lang="en">
 
 <head>
+    <title>DKockout</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DKockout</title>
-    <script src="{% static 'js/chart.js' %}"></script>
+    <meta name="description" content="DKnockout">
+    <meta property="og:site_name" content="DKnockout">
+    <meta property="og:title" content="DKnockout">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="DKnockout">
+    <meta property="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" type="text/css" href="{% static 'dislyte_knockout/css/css.css' %}">
+    <!-- <link
+        href="C:/Users/riri_/Desktop/Programação/Python/Learning_Django/mysite/dislyte_knockout/static/dislyte_knockout/css/css.css"
+        rel="stylesheet" type="text/css"> -->
+    <script src="{% static 'dislyte_knockout/js/chart.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    <script src="{% static 'js/chartjs-plugin-datalabels.min.js' %}"></script>
+    <script src="{% static 'dislyte_knockout/js/chartjs-plugin-datalabels.min.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+    <!-- <link rel="canonical" href="https://..."> -->
 </head>
 
-<body>
-
-    <header>
-        <h1>DKnockout</h1>
-        <nav>
-            <!-- Menu de navegação, se aplicável -->
-        </nav>
-    </header>
-
-    <main>
-
-        {% block body %}{% endblock %}
-
-    </main>
-
-    <footer>
-        <p>&copy; 2023 My Site. Todos os direitos reservados.</p>
-    </footer>
-
+<body class="is-ready">
+    <div id="wrapper">
+        <div id="main">
+            <div class="inner">
+                <section id="home-section" class="active">
+                    <div id="container02" class="container columns full screen">
+                        <div class="wrapper">
+                            <div class="inner">
+                                <div>
+                                    <div id="image36" class="image"><span class="frame"><img
+                                                src="{% static 'dislyte_knockout/image/logo1.png' %}" alt=""></span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <ul id="buttons02" class="buttons">
+                                        <li><a class="button n01">Version 3.3.6</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% block home %}
+                    {% endblock %}
+                </section>
+                <footer id="footer">
+                    <div id="container08" class="container default full screen">
+                        <div class="wrapper">
+                            <div class="inner">
+                                <p id="text58" class="style2">© 2023 DKnockout</p>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
 </body>
 
 </html>

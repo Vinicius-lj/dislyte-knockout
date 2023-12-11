@@ -1,0 +1,77 @@
+{% if most_used_esper %}
+{{ most_used_esper|json_script:"esper" }}
+<script>
+    var esper = JSON.parse(document.getElementById('esper').textContent);
+
+    var canvas = document.getElementById('esperChart')
+    var numBars = esper.length;
+    var barHeight = 40;
+    var totalHeight = numBars * barHeight;
+    canvas.style.height = totalHeight + 'px';
+    var ctx = canvas.getContext('2d');
+
+    const esper_colors = {
+        'Wind': 'rgb(64,192,126)',
+        'Shimmer': 'rgb(86, 252, 249)',
+        'Flow': 'rgb(219,121,255)',
+        'Inferno': 'rgb(255,139,0)'
+    };
+
+    const data_esper = {
+        labels: esper.map(item => item.esper_id__name),
+        datasets: [{
+            barPercentage: 0.9,
+            axis: 'y',
+            label: '',
+            data: esper.map(item => item.count),
+            backgroundColor: esper.map(item => esper_colors[item.esper_id__classe]),
+            borderWidth: 0,
+        }]
+    };
+
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: data_esper,
+        plugins: [ChartDataLabels],
+        options: {
+            maintainAspectRatio: false,
+            indexAxis: 'y',
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        display: false
+                    }
+
+                },
+                x: {
+                    display: false,
+                    beginAtZero: true,
+                    grid: {
+                        display: false
+                    }
+
+                }
+            },
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: false,
+                },
+                datalabels: {
+                    color: '#fff',
+                    font: {
+                        weight: 'bold',
+                        size: 14,
+                    },
+                    formatter: (value, context) => {
+                        return value;
+                    }
+                }
+            }
+        },
+    });
+</script>
+{% else %}
+<p>No information are available.</p>
+{% endif %}

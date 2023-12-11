@@ -12,5 +12,6 @@ urlpatterns = [
     path('role/', views.MostUsedRarityView.as_view(), name='most_used_rarity'),
     path('leader_effect/', views.MostUsedLeaderEffectView.as_view(),
          name='most_used_leader_effect'),
+    path('ressonance/', views.RessonanceView.as_view(), name='ressonance'),
 
 ]
