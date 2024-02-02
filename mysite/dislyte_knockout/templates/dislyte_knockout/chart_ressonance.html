@@ -4,14 +4,14 @@
     var ctx = document.getElementById('ressonanceChart').getContext('2d');
     var ressonance = JSON.parse(document.getElementById('ressonance').textContent);
 
-    const ressonance_colors = {
-        0: '#fde012',
-        1: '#f7c91d',
-        2: '#f59638',
-        3: '#ec3c6b',
-        4: '#ea0191',
-        5: '#bf01ad',
-        6: '#9b00ca',
+    const ressonance_colors_2 = {
+        0: 'RGB(253, 224, 18)',
+        1: 'RGB(237, 187, 49)',
+        2: 'RGB(220, 149, 79)',
+        3: 'RGB(204, 112, 110)',
+        4: 'RGB(188, 75, 141)',
+        5: 'RGB(171, 37, 171)',
+        6: 'RGB(155, 0, 202)',
     };
 
     const data_ressonance = {
@@ -19,7 +19,7 @@
         datasets: [{
             label: '',
             data: ressonance.map(item => item.count),
-            backgroundColor: ressonance.map(item => ressonance_colors[item.ressonance]),
+            backgroundColor: ressonance.map(item => ressonance_colors_2[item.ressonance]),
             borderWidth: 0,
         }]
     };

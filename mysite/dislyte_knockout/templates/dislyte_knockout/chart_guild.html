@@ -1,0 +1,70 @@
+{% if guild %}
+{{ guild|json_script:"guild" }}
+<script>
+    var guild = JSON.parse(document.getElementById('guild').textContent);
+
+    var canvas = document.getElementById('guildChart')
+    var numBars = guild.length;
+    var barHeight = 40;
+    var totalHeight = numBars * barHeight;
+    canvas.style.height = totalHeight + 'px';
+    var ctx = canvas.getContext('2d');
+
+    const data_guild = {
+        labels: guild.map(item => item.player_id__guild),
+        datasets: [{
+            barPercentage: 0.9,
+            axis: 'y',
+            label: '',
+            data: guild.map(item => item.count),
+            backgroundColor: 'rgb(219,121,255)',
+            borderWidth: 0,
+        }]
+    };
+
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: data_guild,
+        plugins: [ChartDataLabels],
+        options: {
+            maintainAspectRatio: false,
+            indexAxis: 'y',
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        display: false
+                    }
+
+                },
+                x: {
+                    display: false,
+                    beginAtZero: true,
+                    grid: {
+                        display: false
+                    }
+
+                }
+            },
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: false,
+                },
+                datalabels: {
+                    color: 'white',
+                    font: {
+                        weight: 'bold',
+                        size: 14,
+                    },
+                    formatter: function (value, context) {
+                        return value;
+                    }
+                }
+            },
+        },
+    });
+</script>
+{% else %}
+<p>No information are available.</p>
+{% endif %}

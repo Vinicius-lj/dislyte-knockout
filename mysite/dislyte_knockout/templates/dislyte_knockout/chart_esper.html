@@ -10,11 +10,14 @@
     canvas.style.height = totalHeight + 'px';
     var ctx = canvas.getContext('2d');
 
-    const esper_colors = {
-        'Wind': 'rgb(64,192,126)',
-        'Shimmer': 'rgb(86, 252, 249)',
-        'Flow': 'rgb(219,121,255)',
-        'Inferno': 'rgb(255,139,0)'
+    const ressonance_colors = {
+        0: 'RGB(253, 224, 18)',
+        1: 'RGB(237, 187, 49)',
+        2: 'RGB(220, 149, 79)',
+        3: 'RGB(204, 112, 110)',
+        4: 'RGB(188, 75, 141)',
+        5: 'RGB(171, 37, 171)',
+        6: 'RGB(155, 0, 202)',
     };
 
     const data_esper = {
@@ -23,9 +26,93 @@
             barPercentage: 0.9,
             axis: 'y',
             label: '',
-            data: esper.map(item => item.count),
-            backgroundColor: esper.map(item => esper_colors[item.esper_id__classe]),
+            // data: esper.map(item => item.count),
+            rank_variation: esper.map(item => item.rank_variation),
             borderWidth: 0,
+        },
+        {
+            barPercentage: 0.9,
+            axis: 'y',
+            label: 'R0',
+            data: esper.map(item => item.ress0),
+            rank_variation: esper.map(item => item.rank_variation),
+            backgroundColor: ressonance_colors[0],
+            borderWidth: 0,
+        },
+        {
+            barPercentage: 0.9,
+            axis: 'y',
+            label: 'R1',
+            data: esper.map(item => item.ress1),
+            rank_variation: esper.map(item => item.rank_variation),
+            backgroundColor: ressonance_colors[1],
+            borderWidth: 0,
+        },
+        {
+            barPercentage: 0.9,
+            axis: 'y',
+            label: 'R2',
+            data: esper.map(item => item.ress2),
+            rank_variation: esper.map(item => item.rank_variation),
+            backgroundColor: ressonance_colors[2],
+            borderWidth: 0,
+        },
+        {
+            barPercentage: 0.9,
+            axis: 'y',
+            label: 'R3',
+            data: esper.map(item => item.ress3),
+            rank_variation: esper.map(item => item.rank_variation),
+            backgroundColor: ressonance_colors[3],
+            borderWidth: 0,
+        },
+        {
+            barPercentage: 0.9,
+            axis: 'y',
+            label: 'R4',
+            data: esper.map(item => item.ress4),
+            rank_variation: esper.map(item => item.rank_variation),
+            backgroundColor: ressonance_colors[4],
+            borderWidth: 0,
+        },
+        {
+            barPercentage: 0.9,
+            axis: 'y',
+            label: 'R5',
+            data: esper.map(item => item.ress5),
+            rank_variation: esper.map(item => item.rank_variation),
+            backgroundColor: ressonance_colors[5],
+            borderWidth: 0,
+        },
+        {
+            barPercentage: 0.9,
+            axis: 'y',
+            label: 'R6',
+            data: esper.map(item => item.ress6),
+            rank_variation: esper.map(item => item.rank_variation),
+            backgroundColor: ressonance_colors[6],
+            borderWidth: 0,
+            datalabels: {
+                font: {
+                    weight: 'bold',
+                    size: 14,
+                },
+                labels: {
+                    rank_variation: {
+                        anchor: 'end',
+                        align: 'end',
+                        offset: 0,
+                    },
+                },
+                color: function (context) {
+                    const rank_variation = context.dataset.rank_variation[context.dataIndex];
+                    return rank_variation > 0 ? 'rgb(64,192,126)' : rank_variation === 0 ? 'black' : rank_variation < 0 ? 'rgb(230,7,7)' : 'rgb(134,114,233)';
+                },
+                formatter: function (value, context) {
+                    const rank_variation = context.dataset.rank_variation[context.dataIndex];
+                    return rank_variation > 0 ? '+' + rank_variation : rank_variation === 0 ? '-' : rank_variation < 0 ? rank_variation : 'New';
+                }
+            }
         }]
     };
 
@@ -38,35 +125,44 @@
             indexAxis: 'y',
             scales: {
                 y: {
+                    stacked: true,
                     beginAtZero: true,
                     grid: {
                         display: false
                     }
-
                 },
                 x: {
+                    stacked: true,
                     display: false,
                     beginAtZero: true,
                     grid: {
                         display: false
                     }
-
                 }
             },
             responsive: true,
             plugins: {
                 legend: {
-                    display: false,
+                    display: true,
                 },
                 datalabels: {
-                    color: '#fff',
+                    color: 'white',
                     font: {
                         weight: 'bold',
                         size: 14,
+                        anchor: 'center',
+                        align: 'center',
+                        offset: 0,
+
                     },
-                    formatter: (value, context) => {
-                        return value;
+                    formatter: function (value, context) {
+                        return null;
                     }
+                }
+            },
+            layout: {
+                padding: {
+                    right: 25
                 }
             }
         },
