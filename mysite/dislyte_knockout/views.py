@@ -1,5 +1,3 @@
-from typing import Any
-from django.db.models.query import QuerySet
 from django.views.generic import ListView, TemplateView
 from django.db.models import Count, F, Window, Value, Subquery, OuterRef
 from django.db.models.functions import Rank, Coalesce

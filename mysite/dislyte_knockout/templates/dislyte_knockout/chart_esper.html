@@ -22,98 +22,91 @@
 
     const data_esper = {
         labels: esper.map(item => item.esper_id__name),
-        datasets: [{
-            barPercentage: 0.9,
-            axis: 'y',
-            label: '',
-            // data: esper.map(item => item.count),
-            rank_variation: esper.map(item => item.rank_variation),
-            borderWidth: 0,
-        },
-        {
-            barPercentage: 0.9,
-            axis: 'y',
-            label: 'R0',
-            data: esper.map(item => item.ress0),
-            rank_variation: esper.map(item => item.rank_variation),
-            backgroundColor: ressonance_colors[0],
-            borderWidth: 0,
-        },
-        {
-            barPercentage: 0.9,
-            axis: 'y',
-            label: 'R1',
-            data: esper.map(item => item.ress1),
-            rank_variation: esper.map(item => item.rank_variation),
-            backgroundColor: ressonance_colors[1],
-            borderWidth: 0,
-        },
-        {
-            barPercentage: 0.9,
-            axis: 'y',
-            label: 'R2',
-            data: esper.map(item => item.ress2),
-            rank_variation: esper.map(item => item.rank_variation),
-            backgroundColor: ressonance_colors[2],
-            borderWidth: 0,
-        },
-        {
-            barPercentage: 0.9,
-            axis: 'y',
-            label: 'R3',
-            data: esper.map(item => item.ress3),
-            rank_variation: esper.map(item => item.rank_variation),
-            backgroundColor: ressonance_colors[3],
-            borderWidth: 0,
-        },
-        {
-            barPercentage: 0.9,
-            axis: 'y',
-            label: 'R4',
-            data: esper.map(item => item.ress4),
-            rank_variation: esper.map(item => item.rank_variation),
-            backgroundColor: ressonance_colors[4],
-            borderWidth: 0,
-        },
-        {
-            barPercentage: 0.9,
-            axis: 'y',
-            label: 'R5',
-            data: esper.map(item => item.ress5),
-            rank_variation: esper.map(item => item.rank_variation),
-            backgroundColor: ressonance_colors[5],
-            borderWidth: 0,
-        },
-        {
-            barPercentage: 0.9,
-            axis: 'y',
-            label: 'R6',
-            data: esper.map(item => item.ress6),
-            rank_variation: esper.map(item => item.rank_variation),
-            backgroundColor: ressonance_colors[6],
-            borderWidth: 0,
-            datalabels: {
-                font: {
-                    weight: 'bold',
-                    size: 14,
-                },
-                labels: {
-                    rank_variation: {
-                        anchor: 'end',
-                        align: 'end',
-                        offset: 0,
+        datasets: [
+            {
+                barPercentage: 0.9,
+                axis: 'y',
+                label: 'R0',
+                data: esper.map(item => item.ress0),
+                rank_variation: esper.map(item => item.rank_variation),
+                backgroundColor: ressonance_colors[0],
+                borderWidth: 0,
+            },
+            {
+                barPercentage: 0.9,
+                axis: 'y',
+                label: 'R1',
+                data: esper.map(item => item.ress1),
+                rank_variation: esper.map(item => item.rank_variation),
+                backgroundColor: ressonance_colors[1],
+                borderWidth: 0,
+            },
+            {
+                barPercentage: 0.9,
+                axis: 'y',
+                label: 'R2',
+                data: esper.map(item => item.ress2),
+                rank_variation: esper.map(item => item.rank_variation),
+                backgroundColor: ressonance_colors[2],
+                borderWidth: 0,
+            },
+            {
+                barPercentage: 0.9,
+                axis: 'y',
+                label: 'R3',
+                data: esper.map(item => item.ress3),
+                rank_variation: esper.map(item => item.rank_variation),
+                backgroundColor: ressonance_colors[3],
+                borderWidth: 0,
+            },
+            {
+                barPercentage: 0.9,
+                axis: 'y',
+                label: 'R4',
+                data: esper.map(item => item.ress4),
+                rank_variation: esper.map(item => item.rank_variation),
+                backgroundColor: ressonance_colors[4],
+                borderWidth: 0,
+            },
+            {
+                barPercentage: 0.9,
+                axis: 'y',
+                label: 'R5',
+                data: esper.map(item => item.ress5),
+                rank_variation: esper.map(item => item.rank_variation),
+                backgroundColor: ressonance_colors[5],
+                borderWidth: 0,
+            },
+            {
+                barPercentage: 0.9,
+                axis: 'y',
+                label: 'R6',
+                data: esper.map(item => item.ress6),
+                rank_variation: esper.map(item => item.rank_variation),
+                backgroundColor: ressonance_colors[6],
+                borderWidth: 0,
+                datalabels: {
+                    font: {
+                        weight: 'bold',
+                        size: 14,
                     },
-                },
-                color: function (context) {
-                    const rank_variation = context.dataset.rank_variation[context.dataIndex];
-                    return rank_variation > 0 ? 'rgb(64,192,126)' : rank_variation === 0 ? 'black' : rank_variation < 0 ? 'rgb(230,7,7)' : 'rgb(134,114,233)';
-                },
-                formatter: function (value, context) {
-                    const rank_variation = context.dataset.rank_variation[context.dataIndex];
-                    return rank_variation > 0 ? '+' + rank_variation : rank_variation === 0 ? '-' : rank_variation < 0 ? rank_variation : 'New';
+                    labels: {
+                        rank_variation: {
+                            anchor: 'end',
+                            align: 'end',
+                            offset: 0,
+                        },
+                    },
+                    color: function (context) {
+                        const rank_variation = context.dataset.rank_variation[context.dataIndex];
+                        return rank_variation > 0 ? 'rgb(64,192,126)' : rank_variation === 0 ? 'black' : rank_variation < 0 ? 'rgb(230,7,7)' : 'rgb(134,114,233)';
+                    },
+                    formatter: function (value, context) {
+                        const rank_variation = context.dataset.rank_variation[context.dataIndex];
+                        return rank_variation > 0 ? '+' + rank_variation : rank_variation === 0 ? '-' : rank_variation < 0 ? rank_variation : 'New';
+                    }
                 }
-            }
-        }]
+            }]
     };
 
     var myChart = new Chart(ctx, {
