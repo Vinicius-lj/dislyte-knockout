@@ -3,8 +3,8 @@ from django.db.models import Count, F, Window, Value, Subquery, OuterRef
 from django.db.models.functions import Rank, Coalesce
 from .models import Player_esper
 
-CURRENT_VERSION = '3.4.1'
-PREVIOUS_VERSION = '3.4.0'
+CURRENT_VERSION = '3.4.3'
+PREVIOUS_VERSION = '3.4.1'
 
 
 class HomePageView(TemplateView):
